@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🌿 Dành cho Lan Anh</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            background: #f7f3f0;
+            font-family: 'Inter', sans-serif;
+            color: #2c2520;
+            line-height: 1.6;
+            transition: background 0.6s ease;
+        }
+
+        /* === OVERLAY MỞ ĐẦU === */
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #f7f3f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        #overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .overlay-content {
+            text-align: center;
+            padding: 2rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .overlay-content .icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .overlay-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
+            font-size: 2rem;
+            color: #3d322b;
+            margin-bottom: 0.5rem;
+        }
+
+        .overlay-content .sub-text {
+            font-size: 0.95rem;
+            color: #9a8a7e;
+            font-weight: 350;
+            margin-bottom: 2rem;
+        }
+
+        .btn-open {
+            background: #8f6e5a;
+            color: #fff;
+            border: none;
+            padding: 0.9rem 3rem;
+            border-radius: 60px;
+            font-size: 1rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 24px rgba(143, 110, 90, 0.2);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-open:hover {
+            background: #7a5f4e;
+            transform: scale(1.03);
+            box-shadow: 0 12px 32px rgba(143, 110, 90, 0.3);
+        }
+
+        .btn-open:active {
+            transform: scale(0.97);
+        }
+
+        /* === CARD CHÍNH === */
+        .card {
+            max-width: 680px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 2.5rem;
+            padding: 3rem 2.5rem;
+            box-shadow: 0 20px 50px -16px rgba(60, 40, 30, 0.12), 0 8px 20px -8px rgba(0, 0, 0, 0.02);
+            border: 1px solid rgba(220, 205, 195, 0.3);
+            transition: all 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px) scale(0.98);
+            pointer-events: none;
+        }
+
+        .card.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: all;
+        }
+
+        .card:hover {
+            box-shadow: 0 28px 60px -20px rgba(60, 40, 30, 0.15);
+            border-color: rgba(190, 170, 158, 0.4);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #d4c0b2, #b8a093, #d4c0b2);
+            border-radius: 2.5rem 2.5rem 0 0;
+            opacity: 0.5;
+        }
+
+        .deco-line {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            color: #c4b3a7;
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+            font-weight: 300;
+        }
+        .deco-line span {
+            display: inline-block;
+            width: 2.2rem;
+            height: 1px;
+            background: #dad0c8;
+        }
+
+        .greeting {
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: 350;
+            letter-spacing: -0.3px;
+            color: #3d322b;
+            margin-bottom: 0.2rem;
+        }
+        .greeting .highlight {
+            font-weight: 500;
+            color: #a67a66;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+        }
+
+        .sub {
+            text-align: center;
+            font-size: 0.95rem;
+            color: #8a7a6e;
+            font-weight: 350;
+            margin-bottom: 2rem;
+            padding-bottom: 1.2rem;
+            border-bottom: 1px solid #eee8e3;
+            letter-spacing: 0.2px;
+        }
+
+        .message {
+            background: #fcf9f7;
+            padding: 2rem 2rem;
+            border-radius: 1.8rem;
+            border: 1px solid #f0e8e2;
+            margin: 1.2rem 0 1.8rem 0;
+            box-shadow: inset 0 2px 6px rgba(255, 245, 235, 0.5);
+        }
+
+        .message p {
+            font-size: 1.05rem;
+            font-weight: 350;
+            color: #3d322b;
+            margin-bottom: 1.2rem;
+            line-height: 1.8;
+        }
+        .message p:last-child {
+            margin-bottom: 0;
+        }
+
+        .message .signature {
+            text-align: right;
+            margin-top: 1.8rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid #eee6e0;
+            font-style: italic;
+            font-weight: 350;
+            color: #7a6a5e;
+            font-size: 0.95rem;
+        }
+        .message .signature span {
+            background: #f2ebe6;
+            padding: 0.15rem 1.2rem;
+            border-radius: 30px;
+            font-style: normal;
+            font-weight: 400;
+            color: #5a4a3e;
+        }
+
+        .name-focus {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 1.8rem 0 0.5rem 0;
+        }
+
+        .name-focus .to {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #b8a69a;
+            font-weight: 400;
+            margin-bottom: 0.2rem;
+        }
+
+        .name-focus .main-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            font-weight: 500;
+            color: #8f6e5a;
+            letter-spacing: 1px;
+            background: #f5efea;
+            padding: 0.1rem 2.2rem;
+            border-radius: 60px;
+            display: inline-block;
+            box-shadow: 0 2px 8px rgba(140, 110, 90, 0.04);
+        }
+
+        .name-focus .from {
+            margin-top: 0.6rem;
+            font-size: 0.9rem;
+            color: #9a8a7e;
+            font-weight: 350;
+            letter-spacing: 0.5px;
+        }
+        .name-focus .from strong {
+            font-weight: 500;
+            color: #6b5b4f;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+        }
+
+        .footer-note {
+            margin-top: 2.2rem;
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            font-size: 0.75rem;
+            color: #bfb0a5;
+            letter-spacing: 0.3px;
+            border-top: 1px solid #f0eae5;
+            padding-top: 1.8rem;
+        }
+        .footer-note span {
+            background: #f7f2ee;
+            padding: 0.15rem 1rem;
+            border-radius: 30px;
+        }
+
+        @media (max-width: 500px) {
+            .card {
+                padding: 2rem 1.2rem;
+                border-radius: 2rem;
+            }
+            .greeting {
+                font-size: 1.5rem;
+            }
+            .message p {
+                font-size: 0.98rem;
+            }
+            .name-focus .main-name {
+                font-size: 2rem;
+                padding: 0.1rem 1.5rem;
+            }
+            .overlay-content h2 {
+                font-size: 1.5rem;
+            }
+            .overlay-content .icon {
+                font-size: 2.8rem;
+            }
+            .btn-open {
+                padding: 0.7rem 2.2rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- OVERLAY MỞ ĐẦU -->
+    <div id="overlay">
+        <div class="overlay-content">
+            <span class="icon">🌿</span>
+            <h2>Em đã sẵn sàng chưa?</h2>
+            <p class="sub-text">Có một điều anh muốn nói với em</p>
+            <button class="btn-open" id="openBtn">Mở thư</button>
+        </div>
+    </div>
+
+    <!-- CARD CHÍNH -->
+    <div class="card" id="mainCard">
+        <div class="deco-line">
+            <span></span> ✦ <span></span>
+        </div>
+
+        <div class="greeting">
+            Gửi <span class="highlight">Lan Anh</span>
+        </div>
+        <div class="sub">
+            anh viết mấy dòng này cho em
+        </div>
+
+        <div class="message">
+            <p>
+                Anh không giỏi nói những lời ngọt ngào. Anh cũng không biết làm thơ hay viết văn. Nhưng anh muốn em biết một điều: em quan trọng với anh hơn anh từng thể hiện.
+            </p>
+            <p>
+                Có những ngày anh bận, anh quên hỏi em một câu "hôm nay thế nào?". Có những lúc anh im lặng vì nghĩ rằng không có gì để nói. Nhưng anh nhận ra rằng im lặng không phải là cách để yêu thương ai đó.
+            </p>
+            <p>
+                Anh muốn học cách quan tâm em nhiều hơn. Không phải chỉ trong những lúc đặc biệt, mà trong cả những ngày bình thường nhất. Anh muốn em thấy rằng em không cô đơn, rằng có một người luôn nghĩ về em.
+            </p>
+            <p>
+                Anh không hứa sẽ thay đổi hoàn toàn chỉ trong một ngày. Nhưng anh hứa sẽ cố gắng từng ngày một. Và nếu có lúc anh làm em buồn, anh mong em sẽ nói để anh biết.
+            </p>
+            <div class="signature">
+                <span>Khánh</span>
+            </div>
+        </div>
+
+        <div class="name-focus">
+            <div class="to">dành cho</div>
+            <div class="main-name">Lê Thị Lan Anh</div>
+            <div class="from">
+                từ <strong>Hoàng Quốc Khánh</strong>
+            </div>
+        </div>
+
+        <div class="footer-note">
+            <span>✦ chân thành</span>
+            <span>và có lỗi</span>
+            <span>✦</span>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const overlay = document.getElementById('overlay');
+            const mainCard = document.getElementById('mainCard');
+            const openBtn = document.getElementById('openBtn');
+
+            openBtn.addEventListener('click', function() {
+                overlay.classList.add('hidden');
+
+                setTimeout(function() {
+                    mainCard.classList.add('visible');
+                    document.body.style.background = '#f7f3f0';
+                }, 400);
+            });
+
+            openBtn.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    openBtn.click();
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
