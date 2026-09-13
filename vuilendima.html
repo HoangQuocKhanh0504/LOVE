@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vui lên đi nè ✨</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', 'Quicksand', sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #ffd6e8 0%, #e0d4ff 50%, #d4f0ff 100%);
+      background-size: 300% 300%;
+      animation: bgShift 18s ease infinite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+      padding: 20px;
+    }
+
+    @keyframes bgShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Vòng hào quang mờ phía sau */
+    .glow {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(255, 200, 230, 0.55) 0%, rgba(255, 200, 230, 0) 70%);
+      border-radius: 50%;
+      animation: pulseGlow 6s ease-in-out infinite;
+      z-index: 1;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { transform: scale(1); opacity: 0.6; }
+      50% { transform: scale(1.2); opacity: 0.9; }
+    }
+
+    .container {
+      position: relative;
+      z-index: 10;
+      max-width: 680px;
+      width: 100%;
+      text-align: center;
+      padding: 50px 35px;
+      background: rgba(255, 255, 255, 0.55);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-radius: 45px;
+      border: 1.5px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 
+        0 25px 60px rgba(200, 130, 200, 0.25),
+        0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+    }
+
+    .emoji {
+      font-size: 4.5rem;
+      display: inline-block;
+      animation: bounceEmoji 2.6s infinite ease-in-out;
+      filter: drop-shadow(0 10px 15px rgba(255, 150, 200, 0.4));
+      margin-bottom: 8px;
+    }
+
+    @keyframes bounceEmoji {
+      0%, 100% { transform: translateY(0) rotate(-3deg); }
+      50% { transform: translateY(-16px) rotate(4deg); }
+    }
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      background: linear-gradient(90deg, #ff6fa5, #a06bff, #6bb8ff, #ff6fa5);
+      background-size: 300% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shine 5s linear infinite;
+      letter-spacing: -1px;
+      line-height: 1.25;
+      margin-bottom: 25px;
+      filter: drop-shadow(2px 2px 0 rgba(255, 255, 255, 0.6));
+    }
+
+    @keyframes shine {
+      to { background-position: 300% center; }
+    }
+
+    .message {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #5a4a70;
+      line-height: 1.6;
+      padding: 25px 20px;
+      margin-bottom: 18px;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.65);
+      border: 2px dashed rgba(255, 150, 200, 0.6);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      min-height: 130px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.9);
+    }
+
+    .sub {
+      font-size: 1.15rem;
+      color: #8a7aa0;
+      font-style: italic;
+      transition: opacity 0.6s ease;
+      letter-spacing: 0.2px;
+    }
+
+    /* Trái tim / ngôi sao bay lên */
+    .float-item {
+      position: absolute;
+      pointer-events: none;
+      z-index: 5;
+      animation: floatUp linear forwards;
+      user-select: none;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(0.6) rotate(0deg);
+        opacity: 0;
+      }
+      15% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-110vh) scale(1.1) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Chấm sáng lấp lánh tĩnh */
+    .sparkle {
+      position: absolute;
+      pointer-events: none;
+      z-index: 2;
+      animation: twinkle 3s ease-in-out infinite;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.15; transform: scale(0.7); }
+      50% { opacity: 0.9; transform: scale(1.15); }
+    }
+
+    /* Responsive */
+    @media (max-width: 560px) {
+      .container {
+        padding: 35px 20px;
+        border-radius: 35px;
+      }
+      h1 {
+        font-size: 2.1rem;
+      }
+      .emoji {
+        font-size: 3.4rem;
+      }
+      .message {
+        font-size: 1.35rem;
+        min-height: 110px;
+        padding: 20px 12px;
+      }
+      .sub {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="glow"></div>
+
+  <div class="container">
+    <div class="emoji" id="emoji">🌈</div>
+    <h1>Vui lên đi nè!<br>Đừng chán nữa nè ~</h1>
+    <div class="message" id="message">
+      Ngày hôm nay có thể chưa ổn,<br>nhưng bạn thì luôn ổn.
+    </div>
+    <div class="sub" id="sub">
+      Thử mỉm cười một cái xem, nhẹ cả người liền đó.
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      // Lời nhắn xoay quanh chủ đề "vui lên, đừng chán nữa"
+      const data = [
+        { emoji: "🌈", msg: "Ngày hôm nay có thể chưa ổn,<br>nhưng bạn thì luôn ổn.", sub: "Thử mỉm cười một cái xem, nhẹ cả người liền đó." },
+        { emoji: "🌻", msg: "Chán thì chán thôi,<br>đừng ở trong đó lâu quá nha.", sub: "Ra ngoài hít thở chút đi, trời đang đẹp đó." },
+        { emoji: "✨", msg: "Bạn không cần phải vui ngay,<br>chỉ cần đừng bỏ cuộc với niềm vui.", sub: "Nó sẽ quay lại thôi, chậm mà chắc." },
+        { emoji: "🍀", msg: "Vui lên đi nè,<br>buồn hoài cũng mệt lắm.", sub: "Cho bản thân một ngày dễ chịu đi." },
+        { emoji: "🎈", msg: "Đừng chán nữa nè,<br>thế giới còn nhiều thứ hay ho lắm.", sub: "Thử làm một việc nhỏ mình thích xem." },
+        { emoji: "🌙", msg: "Có những ngày chỉ cần ngồi yên,<br>không cần làm gì cũng được.", sub: "Nghỉ ngơi cũng là một cách vui." },
+        { emoji: "🕊️", msg: "Mọi chuyện rồi sẽ nhẹ đi,<br>kể cả cảm giác chán này.", sub: "Tin vào điều đó một chút nha." },
+        { emoji: "☀️", msg: "Hôm nay bạn đã cố gắng rồi,<br>vậy là đủ giỏi rồi đó.", sub: "Đừng khắt khe với mình quá." },
+        { emoji: "🧸", msg: "Nếu mệt thì dừng lại,<br>không ai giục bạn đâu.", sub: "Đi chậm cũng là đi mà." },
+        { emoji: "💐", msg: "Vui lên nha,<br>vì bạn xứng đáng được vui.", sub: "Không cần lý do gì to tát cả." },
+        { emoji: "🌊", msg: "Chán cũng là một cảm xúc bình thường,<br>đừng tự trách mình vì nó.", sub: "Rồi nó cũng qua thôi." },
+        { emoji: "🌷", msg: "Thử hít thật sâu,<br>rồi thở ra thật chậm.", sub: "Mọi thứ dịu lại từ từ thôi." }
+      ];
+
+      const emojiEl = document.getElementById('emoji');
+      const messageEl = document.getElementById('message');
+      const subEl = document.getElementById('sub');
+
+      let index = 0;
+      let changing = false;
+
+      // Đổi lời nhắn mượt mà
+      function changeContent() {
+        if (changing) return;
+        changing = true;
+
+        [emojiEl, messageEl, subEl].forEach(el => {
+          el.style.opacity = '0';
+          el.style.transform = 'translateY(8px)';
+        });
+
+        setTimeout(() => {
+          index = (index + 1) % data.length;
+          const item = data[index];
+          emojiEl.textContent = item.emoji;
+          messageEl.innerHTML = item.msg;
+          subEl.textContent = item.sub;
+
+          [emojiEl, messageEl, subEl].forEach(el => {
+            el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+          });
+
+          changing = false;
+        }, 700);
+      }
+
+      // Tự đổi sau 5.5 giây
+      setInterval(changeContent, 5500);
+
+      // Tạo trái tim / ngôi sao bay lên
+      const floatIcons = ['💖', '✨', '🌸', '⭐', '💫', '🌟', '🎈', '🌷', '💕', '☁️', '🦋'];
+
+      function spawnFloat() {
+        const item = document.createElement('div');
+        item.classList.add('float-item');
+        item.textContent = floatIcons[Math.floor(Math.random() * floatIcons.length)];
+        item.style.left = Math.random() * 100 + '%';
+        item.style.bottom = '-50px';
+        item.style.fontSize = (Math.random() * 1.8 + 1.2) + 'rem';
+        item.style.animationDuration = (Math.random() * 6 + 8) + 's';
+        item.style.filter = 'drop-shadow(0 0 8px rgba(255, 180, 220, 0.6))';
+        document.body.appendChild(item);
+
+        setTimeout(() => item.remove(), 15000);
+      }
+
+      // Tạo đều đặn
+      setInterval(spawnFloat, 900);
+      for (let i = 0; i < 6; i++) {
+        setTimeout(spawnFloat, i * 400);
+      }
+
+      // Chấm sáng lấp lánh tĩnh ở nền
+      function createSparkles() {
+        const icons = ['✨', '⭐', '🌟', '💫'];
+        for (let i = 0; i < 14; i++) {
+          const s = document.createElement('div');
+          s.classList.add('sparkle');
+          s.textContent = icons[Math.floor(Math.random() * icons.length)];
+          s.style.left = Math.random() * 100 + '%';
+          s.style.top = Math.random() * 100 + '%';
+          s.style.fontSize = (Math.random() * 1.5 + 0.8) + 'rem';
+          s.style.animationDelay = (Math.random() * 3) + 's';
+          s.style.animationDuration = (Math.random() * 2 + 2) + 's';
+          document.body.appendChild(s);
+        }
+      }
+      createSparkles();
+    })();
+  </script>
+</body>
+</html>
