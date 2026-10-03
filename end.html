@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gửi Lan Anh 💌</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* Trái tim bay lơ lửng */
+  .heart {
+    position: fixed;
+    color: rgba(255, 107, 129, 0.15);
+    font-size: 24px;
+    animation: floatUp linear infinite;
+    pointer-events: none;
+    z-index: 0;
+  }
+  @keyframes floatUp {
+    0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+    20% { opacity: 1; }
+    100% { transform: translateY(-100px) scale(1.2); opacity: 0; }
+  }
+
+  .container {
+    width: 100%;
+    max-width: 720px;
+    background: rgba(255, 255, 255, 0.97);
+    border-radius: 24px;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5);
+    padding: 40px 35px;
+    position: relative;
+    z-index: 1;
+    animation: fadeIn 1s ease;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .header .icon {
+    font-size: 50px;
+    display: block;
+    margin-bottom: 10px;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+  }
+  .header h1 {
+    font-size: 26px;
+    color: #c2185b;
+    margin-bottom: 8px;
+  }
+  .header p {
+    color: #888;
+    font-size: 14px;
+    font-style: italic;
+  }
+
+  .divider {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #f8bbd0, transparent);
+    margin: 20px 0;
+  }
+
+  label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 8px;
+  }
+
+  input, textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #f0e0e6;
+    border-radius: 14px;
+    font-size: 15px;
+    font-family: inherit;
+    background: #fffafc;
+    transition: all 0.3s;
+    resize: vertical;
+  }
+  input:focus, textarea:focus {
+    outline: none;
+    border-color: #f06292;
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(240, 98, 146, 0.12);
+  }
+
+  textarea {
+    min-height: 260px;
+    line-height: 1.7;
+  }
+
+  .field { margin-bottom: 20px; }
+
+  .char-count {
+    text-align: right;
+    font-size: 12px;
+    color: #aaa;
+    margin-top: 6px;
+  }
+
+  .btn-group {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+
+  button {
+    flex: 1;
+    min-width: 150px;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 14px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: inherit;
+  }
+
+  .btn-send {
+    background: linear-gradient(135deg, #ec407a, #c2185b);
+    color: #fff;
+    box-shadow: 0 8px 20px rgba(194, 24, 91, 0.35);
+  }
+  .btn-send:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(194, 24, 91, 0.45);
+  }
+  .btn-send:active { transform: translateY(0); }
+
+  .btn-copy {
+    background: #fce4ec;
+    color: #c2185b;
+  }
+  .btn-copy:hover { background: #f8bbd0; }
+
+  .btn-clear {
+    background: #f5f5f5;
+    color: #777;
+    flex: 0 0 auto;
+    min-width: 90px;
+  }
+  .btn-clear:hover { background: #e0e0e0; }
+
+  .footer-note {
+    text-align: center;
+    font-size: 13px;
+    color: #999;
+    margin-top: 25px;
+    line-height: 1.6;
+  }
+
+  /* Thông báo toast */
+  .toast {
+    position: fixed;
+    top: 25px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-120px);
+    background: #c2185b;
+    color: #fff;
+    padding: 14px 28px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 14px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    z-index: 100;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  .preview {
+    background: #fff5f8;
+    border-left: 4px solid #f06292;
+    border-radius: 12px;
+    padding: 18px;
+    margin-top: 20px;
+    display: none;
+    white-space: pre-wrap;
+    line-height: 1.7;
+    color: #444;
+    font-size: 14.5px;
+    max-height: 300px;
+    overflow-y: auto;
+  }
+  .preview.show { display: block; animation: fadeIn 0.5s ease; }
+  .preview h3 {
+    color: #c2185b;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  @media (max-width: 480px) {
+    .container { padding: 28px 20px; border-radius: 18px; }
+    .header h1 { font-size: 21px; }
+    .btn-group { flex-direction: column; }
+    .btn-clear { min-width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <span class="icon">💌</span>
+    <h1>Gửi đến Lan Anh</h1>
+    <p>Từ một người luôn coi em là tất cả — ẩn danh</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="field">
+    <label for="sender">✍️ Người gửi</label>
+    <input type="text" id="sender" value="Một người ẩn danh" />
+  </div>
+
+  <div class="field">
+    <label for="message">💬 Nội dung thư</label>
+    <textarea id="message" placeholder="Viết những gì em muốn nói...">Lan Anh à,
+
+Anh đang cảm thấy rất tủi thân vì mối quan hệ đầy phức tạp của chúng mình. Bản thân anh đôi lúc cũng cần được hỏi thăm, được quan tâm và được lắng nghe... mà.
+
+Đôi lúc cãi nhau, anh chỉ muốn nói ra cho em hiểu thôi. Nhưng thái độ và cách nói của em khiến anh có cảm giác như em chẳng muốn nghe. Em còn cọc cằn với anh từ trước tới giờ, anh luôn bỏ qua. Vậy mà giờ đến cả việc anh đi, em cũng chẳng có một cảm xúc gì, em vẫn một mực im lặng như vậy.
+
+Anh cũng biết đau chứ. Chỉ là cách anh thể hiện sự quan tâm chưa đủ để em nhận ra thôi.
+
+Anh nói thật, đôi khi anh hỏi em rằng: em có biết anh từng cố gắng gạt bỏ tiêu cực, gạt bỏ đi sự thất vọng để anh ở bên em lâu hơn bao nhiêu lần chưa? Nhiều lúc anh tự dày vò bản thân mình, anh còn từng nghĩ đến chuyện tự tử nhiều lần. Nhưng rồi anh vẫn suy nghĩ lại — vì anh, vì em, vì tương lai của chúng mình.
+
+Anh thật sự muốn cưới em. Anh không muốn bản thân mình phải chúc em hạnh phúc bên một người khác.
+
+Anh chỉ mong em hiểu anh một chút thôi. Anh mệt mỏi lắm rồi.</textarea>
+    <div class="char-count"><span id="count">0</span> ký tự</div>
+  </div>
+
+  <div class="btn-group">
+    <button class="btn-send" onclick="sendLetter()">💗 Gửi thư</button>
+    <button class="btn-copy" onclick="copyLetter()">📋 Sao chép</button>
+    <button class="btn-clear" onclick="clearLetter()">🗑️ Xoá</button>
+  </div>
+
+  <div class="preview" id="preview"></div>
+
+  <div class="footer-note">
+    🌸 Trang web chỉ mang tính chất lưu giữ và chia sẻ cảm xúc.<br>
+    Hãy trân trọng những gì xuất phát từ trái tim.
+  </div>
+</div>
+
+<div class="toast" id="toast">Đã gửi 💗</div>
+
+<script>
+  const messageEl = document.getElementById('message');
+  const senderEl = document.getElementById('sender');
+  const countEl = document.getElementById('count');
+  const toast = document.getElementById('toast');
+  const preview = document.getElementById('preview');
+
+  // Đếm ký tự
+  function updateCount() {
+    countEl.textContent = messageEl.value.length;
+  }
+  messageEl.addEventListener('input', updateCount);
+  updateCount();
+
+  // Hiện toast
+  function showToast(text) {
+    toast.textContent = text;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2200);
+  }
+
+  // Gửi thư
+  function sendLetter() {
+    const msg = messageEl.value.trim();
+    if (!msg) {
+      showToast('Bạn chưa viết nội dung 💭');
+      return;
+    }
+    const sender = senderEl.value.trim() || 'Một người ẩn danh';
+    preview.innerHTML = `<h3>📨 Thư từ: ${escapeHtml(sender)}</h3>${escapeHtml(msg)}`;
+    preview.classList.add('show');
+    showToast('Đã gửi thư đến Lan Anh 💗');
+    preview.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  // Sao chép
+  function copyLetter() {
+    const msg = messageEl.value.trim();
+    if (!msg) { showToast('Chưa có nội dung để sao chép'); return; }
+    navigator.clipboard.writeText(msg).then(() => {
+      showToast('Đã sao chép nội dung 📋');
+    }).catch(() => {
+      messageEl.select();
+      document.execCommand('copy');
+      showToast('Đã sao chép nội dung 📋');
+    });
+  }
+
+  // Xoá
+  function clearLetter() {
+    if (confirm('Bạn có chắc muốn xoá toàn bộ nội dung thư không?')) {
+      messageEl.value = '';
+      updateCount();
+      preview.classList.remove('show');
+      showToast('Đã xoá nội dung 🗑️');
+    }
+  }
+
+  // Chống XSS
+  function escapeHtml(str) {
+    return str.replace(/[&<>"']/g, function(m) {
+      return { '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[m];
+    });
+  }
+
+  // Tạo trái tim bay
+  const hearts = ['💗', '💖', '💕', '❤️', '🌸'];
+  for (let i = 0; i < 18; i++) {
+    const h = document.createElement('div');
+    h.className = 'heart';
+    h.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+    h.style.left = Math.random() * 100 + 'vw';
+    h.style.animationDuration = (8 + Math.random() * 10) + 's';
+    h.style.animationDelay = Math.random() * 10 + 's';
+    h.style.fontSize = (16 + Math.random() * 26) + 'px';
+    document.body.appendChild(h);
+  }
+</script>
+
+</body>
+</html>
