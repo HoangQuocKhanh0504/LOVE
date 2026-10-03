@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gửi Lan Anh 💌</title>
+<title>Gửi Lan Anh 💔</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    font-family: 'Segoe UI', Tahoma, sans-serif;
+    font-family: 'Segoe UI', 'Times New Roman', serif;
     min-height: 100vh;
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    background: linear-gradient(160deg, #0d0d1a 0%, #1a1a2e 40%, #2d1b2e 100%);
     display: flex;
-    align-items: center;
     justify-content: center;
-    padding: 20px;
+    align-items: flex-start;
+    padding: 60px 20px;
     position: relative;
     overflow-x: hidden;
   }
@@ -22,330 +22,285 @@
   /* Trái tim bay lơ lửng */
   .heart {
     position: fixed;
-    color: rgba(255, 107, 129, 0.15);
-    font-size: 24px;
+    color: rgba(255, 107, 129, 0.18);
+    font-size: 22px;
     animation: floatUp linear infinite;
     pointer-events: none;
     z-index: 0;
+    user-select: none;
   }
   @keyframes floatUp {
-    0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
-    20% { opacity: 1; }
-    100% { transform: translateY(-100px) scale(1.2); opacity: 0; }
+    0% { transform: translateY(110vh) scale(0.4) rotate(0deg); opacity: 0; }
+    15% { opacity: 1; }
+    100% { transform: translateY(-120px) scale(1.3) rotate(25deg); opacity: 0; }
   }
 
-  .container {
+  /* Lá thư */
+  .letter {
     width: 100%;
     max-width: 720px;
-    background: rgba(255, 255, 255, 0.97);
-    border-radius: 24px;
-    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5);
-    padding: 40px 35px;
+    background: linear-gradient(180deg, #fffdf8 0%, #fff8f5 100%);
+    border-radius: 4px;
+    box-shadow:
+      0 30px 80px rgba(0, 0, 0, 0.6),
+      0 0 0 1px rgba(255, 255, 255, 0.08),
+      inset 0 0 80px rgba(240, 200, 210, 0.15);
+    padding: 60px 55px 50px;
     position: relative;
     z-index: 1;
-    animation: fadeIn 1s ease;
+    animation: fadeIn 1.4s ease;
+    line-height: 1.9;
   }
   @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(30px); }
+    from { opacity: 0; transform: translateY(40px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
-  .header {
-    text-align: center;
-    margin-bottom: 30px;
-  }
-  .header .icon {
-    font-size: 50px;
-    display: block;
-    margin-bottom: 10px;
-    animation: pulse 2s infinite;
-  }
-  @keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.15); }
-  }
-  .header h1 {
-    font-size: 26px;
-    color: #c2185b;
-    margin-bottom: 8px;
-  }
-  .header p {
-    color: #888;
-    font-size: 14px;
-    font-style: italic;
+  /* Vết gấp giấy */
+  .letter::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    width: 1px; height: 100%;
+    background: linear-gradient(180deg,
+      transparent 0%,
+      rgba(200, 170, 180, 0.15) 20%,
+      rgba(200, 170, 180, 0.15) 80%,
+      transparent 100%);
+    pointer-events: none;
   }
 
-  .divider {
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #f8bbd0, transparent);
-    margin: 20px 0;
-  }
-
-  label {
-    display: block;
-    font-size: 14px;
-    font-weight: 600;
-    color: #555;
-    margin-bottom: 8px;
-  }
-
-  input, textarea {
-    width: 100%;
-    padding: 14px 16px;
-    border: 2px solid #f0e0e6;
-    border-radius: 14px;
-    font-size: 15px;
-    font-family: inherit;
-    background: #fffafc;
-    transition: all 0.3s;
-    resize: vertical;
-  }
-  input:focus, textarea:focus {
-    outline: none;
-    border-color: #f06292;
-    background: #fff;
-    box-shadow: 0 0 0 4px rgba(240, 98, 146, 0.12);
-  }
-
-  textarea {
-    min-height: 260px;
-    line-height: 1.7;
-  }
-
-  .field { margin-bottom: 20px; }
-
-  .char-count {
-    text-align: right;
-    font-size: 12px;
-    color: #aaa;
-    margin-top: 6px;
-  }
-
-  .btn-group {
-    display: flex;
-    gap: 12px;
-    margin-top: 10px;
-    flex-wrap: wrap;
-  }
-
-  button {
-    flex: 1;
-    min-width: 150px;
-    padding: 15px 20px;
-    border: none;
-    border-radius: 14px;
-    font-size: 15px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.3s;
-    font-family: inherit;
-  }
-
-  .btn-send {
-    background: linear-gradient(135deg, #ec407a, #c2185b);
-    color: #fff;
-    box-shadow: 0 8px 20px rgba(194, 24, 91, 0.35);
-  }
-  .btn-send:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 28px rgba(194, 24, 91, 0.45);
-  }
-  .btn-send:active { transform: translateY(0); }
-
-  .btn-copy {
-    background: #fce4ec;
-    color: #c2185b;
-  }
-  .btn-copy:hover { background: #f8bbd0; }
-
-  .btn-clear {
-    background: #f5f5f5;
-    color: #777;
-    flex: 0 0 auto;
-    min-width: 90px;
-  }
-  .btn-clear:hover { background: #e0e0e0; }
-
-  .footer-note {
-    text-align: center;
-    font-size: 13px;
-    color: #999;
-    margin-top: 25px;
-    line-height: 1.6;
-  }
-
-  /* Thông báo toast */
-  .toast {
-    position: fixed;
-    top: 25px;
+  /* Con dấu sáp */
+  .seal {
+    position: absolute;
+    top: -22px;
     left: 50%;
-    transform: translateX(-50%) translateY(-120px);
-    background: #c2185b;
+    transform: translateX(-50%);
+    width: 64px;
+    height: 64px;
+    background: radial-gradient(circle at 35% 30%, #e8526d, #a3122e);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
     color: #fff;
-    padding: 14px 28px;
-    border-radius: 50px;
+    box-shadow: 0 6px 18px rgba(163, 18, 46, 0.5);
+    z-index: 2;
+  }
+
+  .letter-date {
+    text-align: right;
+    font-size: 13.5px;
+    color: #b09aa2;
+    font-style: italic;
+    margin-bottom: 30px;
+    letter-spacing: 0.3px;
+  }
+
+  .letter h1 {
+    font-size: 26px;
+    color: #a3122e;
+    font-weight: 700;
+    margin-bottom: 28px;
+    letter-spacing: 0.5px;
+    text-align: center;
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  .letter p {
+    font-size: 16.5px;
+    color: #3d3238;
+    margin-bottom: 20px;
+    text-align: justify;
+    text-indent: 1.5em;
+    word-spacing: 0.5px;
+  }
+
+  /* Đoạn nhấn mạnh nỗi đau */
+  .highlight {
+    color: #a3122e;
     font-weight: 600;
-    font-size: 14px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-    z-index: 100;
-  }
-  .toast.show { transform: translateX(-50%) translateY(0); }
-
-  .preview {
-    background: #fff5f8;
-    border-left: 4px solid #f06292;
-    border-radius: 12px;
-    padding: 18px;
-    margin-top: 20px;
-    display: none;
-    white-space: pre-wrap;
-    line-height: 1.7;
-    color: #444;
-    font-size: 14.5px;
-    max-height: 300px;
-    overflow-y: auto;
-  }
-  .preview.show { display: block; animation: fadeIn 0.5s ease; }
-  .preview h3 {
-    color: #c2185b;
-    font-size: 14px;
-    margin-bottom: 10px;
+    font-style: italic;
+    text-indent: 0;
+    display: block;
+    margin: 26px 0;
+    padding-left: 16px;
+    border-left: 3px solid #e8526d;
+    background: linear-gradient(90deg, rgba(232, 82, 109, 0.06), transparent);
+    padding: 12px 16px;
+    border-radius: 6px;
   }
 
-  @media (max-width: 480px) {
-    .container { padding: 28px 20px; border-radius: 18px; }
-    .header h1 { font-size: 21px; }
-    .btn-group { flex-direction: column; }
-    .btn-clear { min-width: 100%; }
+  .letter .closing {
+    text-indent: 0;
+    margin-top: 30px;
+    font-style: italic;
+    color: #5a4a52;
+    text-align: right;
+    font-size: 15.5px;
+  }
+
+  .letter .signature {
+    text-indent: 0;
+    text-align: right;
+    margin-top: 6px;
+    font-size: 16px;
+    color: #a3122e;
+    font-weight: 700;
+    font-family: 'Segoe UI', sans-serif;
+    letter-spacing: 0.4px;
+  }
+
+  .letter .signature small {
+    display: block;
+    font-size: 12.5px;
+    color: #b09aa2;
+    font-weight: 400;
+    font-style: italic;
+    margin-top: 4px;
+    letter-spacing: 0.2px;
+  }
+
+  .divider-line {
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #e8526d, transparent);
+    margin: 34px auto 26px;
+  }
+
+  /* Nút nhỏ cuối thư */
+  .end-note {
+    text-align: center;
+    font-size: 12.5px;
+    color: #c4b2b9;
+    font-style: italic;
+    margin-top: 30px;
+    letter-spacing: 0.3px;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    body { padding: 40px 12px; }
+    .letter { padding: 50px 24px 36px; }
+    .letter h1 { font-size: 21px; }
+    .letter p { font-size: 15.5px; text-align: left; }
+    .highlight { font-size: 15px; }
+    .seal { width: 54px; height: 54px; font-size: 22px; top: -18px; }
   }
 </style>
 </head>
 <body>
 
-<div class="container">
-  <div class="header">
-    <span class="icon">💌</span>
-    <h1>Gửi đến Lan Anh</h1>
-    <p>Từ một người luôn coi em là tất cả — ẩn danh</p>
+<!-- Lá thư -->
+<article class="letter">
+  <div class="seal">💔</div>
+
+  <div class="letter-date">Viết trong một đêm lòng nặng trĩu...</div>
+
+  <h1>Gửi Lan Anh,</h1>
+
+  <p>
+    Anh không biết bắt đầu từ đâu nữa, vì trong lòng anh bây giờ
+    có quá nhiều thứ đang chồng chéo lên nhau. Anh chỉ biết là
+    <strong>anh đang rất tủi thân</strong> — cái cảm giác mà chắc
+    em cũng từng trải qua, khi mình ở cạnh một người mình thương
+    mà vẫn thấy cô đơn.
+  </p>
+
+  <p>
+    Mối quan hệ của chúng mình phức tạp quá, Lan Anh à. Anh không
+    trách em, anh cũng không trách bản thân mình. Anh chỉ thấy
+    mệt. Mệt vì mỗi lần cãi nhau, anh chỉ muốn nói ra cho em
+    hiểu thôi — nói để em biết anh đang nghĩ gì, anh đang đau
+    chỗ nào — nhưng thái độ và cách nói của em khiến anh có cảm
+    giác như <em>em chẳng muốn nghe</em>. Như thể anh nói ra chỉ
+    để rồi bị bỏ ngoài tai.
+  </p>
+
+  <p>
+    Em cọc cằn với anh từ trước tới giờ, anh đều bỏ qua. Anh tự
+    nhủ "chắc em mệt", "chắc em đang có chuyện", "chắc em không
+    cố ý". Anh nuốt hết vào trong, để giữ cho mình bình yên, để
+    giữ cho chúng mình bình yên. Nhưng rồi đến cả việc anh đi,
+    em cũng chẳng có một cảm xúc gì. Em vẫn một mực im lặng như
+    vậy. Cái im lặng đó nó đau hơn cả một câu nói.
+  </p>
+
+  <span class="highlight">
+    Anh cũng biết đau mà, Lan Anh.<br>
+    Anh cũng cần được hỏi thăm, cần được quan tâm, cần được lắng
+    nghe — dù chỉ một lần thôi.
+  </span>
+
+  <p>
+    Anh biết, cách anh thể hiện sự quan tâm của mình chưa đủ để
+    em nhận ra. Anh không phải người giỏi nói những lời ngọt
+    ngào, anh không phải người biết cách làm em vui mỗi ngày.
+    Nhưng anh đã cố. Anh đã cố rất nhiều, theo cái cách của một
+    người đàn ông không biết diễn đạt.
+  </p>
+
+  <p>
+    Có bao giờ em tự hỏi, anh đã từng gạt bỏ bao nhiêu lần tiêu
+    cực, gạt bỏ bao nhiêu lần thất vọng, để anh có thể ở bên em
+    lâu hơn một chút chưa? Anh không kể ra đâu, vì anh không
+    muốn em thấy mình là gánh nặng. Nhưng anh đã làm. Rất nhiều
+    lần. Anh tự dày vò bản thân mình, tự đè nén cảm xúc của
+    mình xuống, chỉ để mỗi sáng thức dậy anh vẫn còn có thể gọi
+    tên em.
+  </p>
+
+  <span class="highlight">
+    Có những đêm anh nghĩ đến chuyện buông tay.<br>
+    Nghĩ đến chuyện kết thúc tất cả.<br>
+    Nhưng rồi anh lại nghĩ về em — nghĩ về chúng mình,<br>
+    về tương lai mà anh vẫn hằng mong.
+  </span>
+
+  <p>
+    Anh thật sự muốn cưới em, Lan Anh. Anh không muốn bản thân
+    mình phải đứng ở một nơi nào đó, chúc em hạnh phúc bên một
+    người khác. Anh không muốn ngày em mặc váy cưới, người nắm
+    tay em không phải là anh. Anh sợ cái ngày đó lắm.
+  </p>
+
+  <p>
+    Anh viết những dòng này không phải để em thương hại anh, cũng
+    không phải để em thấy tội lỗi. Anh chỉ muốn em hiểu rằng —
+    <strong>anh đã cố gắng rất nhiều, theo cái cách mà có thể em
+    chưa từng nhìn thấy.</strong> Và anh mệt rồi. Mệt nhưng vẫn
+    còn thương em. Đó mới là điều đau nhất.
+  </p>
+
+  <div class="divider-line"></div>
+
+  <p class="closing">
+    Nếu em đọc được những dòng này,<br>
+    xin em hãy một lần thôi — lắng nghe anh.
+  </p>
+
+  <p class="signature">
+    — Một người luôn coi em là tất cả —
+    <small>Người gửi: Ẩn danh</small>
+  </p>
+
+  <div class="end-note">
+    💌 Lá thư này được viết bằng những gì chân thành nhất.
   </div>
-
-  <div class="divider"></div>
-
-  <div class="field">
-    <label for="sender">✍️ Người gửi</label>
-    <input type="text" id="sender" value="Một người ẩn danh" />
-  </div>
-
-  <div class="field">
-    <label for="message">💬 Nội dung thư</label>
-    <textarea id="message" placeholder="Viết những gì em muốn nói...">Lan Anh à,
-
-Anh đang cảm thấy rất tủi thân vì mối quan hệ đầy phức tạp của chúng mình. Bản thân anh đôi lúc cũng cần được hỏi thăm, được quan tâm và được lắng nghe... mà.
-
-Đôi lúc cãi nhau, anh chỉ muốn nói ra cho em hiểu thôi. Nhưng thái độ và cách nói của em khiến anh có cảm giác như em chẳng muốn nghe. Em còn cọc cằn với anh từ trước tới giờ, anh luôn bỏ qua. Vậy mà giờ đến cả việc anh đi, em cũng chẳng có một cảm xúc gì, em vẫn một mực im lặng như vậy.
-
-Anh cũng biết đau chứ. Chỉ là cách anh thể hiện sự quan tâm chưa đủ để em nhận ra thôi.
-
-Anh nói thật, đôi khi anh hỏi em rằng: em có biết anh từng cố gắng gạt bỏ tiêu cực, gạt bỏ đi sự thất vọng để anh ở bên em lâu hơn bao nhiêu lần chưa? Nhiều lúc anh tự dày vò bản thân mình, anh còn từng nghĩ đến chuyện tự tử nhiều lần. Nhưng rồi anh vẫn suy nghĩ lại — vì anh, vì em, vì tương lai của chúng mình.
-
-Anh thật sự muốn cưới em. Anh không muốn bản thân mình phải chúc em hạnh phúc bên một người khác.
-
-Anh chỉ mong em hiểu anh một chút thôi. Anh mệt mỏi lắm rồi.</textarea>
-    <div class="char-count"><span id="count">0</span> ký tự</div>
-  </div>
-
-  <div class="btn-group">
-    <button class="btn-send" onclick="sendLetter()">💗 Gửi thư</button>
-    <button class="btn-copy" onclick="copyLetter()">📋 Sao chép</button>
-    <button class="btn-clear" onclick="clearLetter()">🗑️ Xoá</button>
-  </div>
-
-  <div class="preview" id="preview"></div>
-
-  <div class="footer-note">
-    🌸 Trang web chỉ mang tính chất lưu giữ và chia sẻ cảm xúc.<br>
-    Hãy trân trọng những gì xuất phát từ trái tim.
-  </div>
-</div>
-
-<div class="toast" id="toast">Đã gửi 💗</div>
+</article>
 
 <script>
-  const messageEl = document.getElementById('message');
-  const senderEl = document.getElementById('sender');
-  const countEl = document.getElementById('count');
-  const toast = document.getElementById('toast');
-  const preview = document.getElementById('preview');
-
-  // Đếm ký tự
-  function updateCount() {
-    countEl.textContent = messageEl.value.length;
-  }
-  messageEl.addEventListener('input', updateCount);
-  updateCount();
-
-  // Hiện toast
-  function showToast(text) {
-    toast.textContent = text;
-    toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 2200);
-  }
-
-  // Gửi thư
-  function sendLetter() {
-    const msg = messageEl.value.trim();
-    if (!msg) {
-      showToast('Bạn chưa viết nội dung 💭');
-      return;
-    }
-    const sender = senderEl.value.trim() || 'Một người ẩn danh';
-    preview.innerHTML = `<h3>📨 Thư từ: ${escapeHtml(sender)}</h3>${escapeHtml(msg)}`;
-    preview.classList.add('show');
-    showToast('Đã gửi thư đến Lan Anh 💗');
-    preview.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  }
-
-  // Sao chép
-  function copyLetter() {
-    const msg = messageEl.value.trim();
-    if (!msg) { showToast('Chưa có nội dung để sao chép'); return; }
-    navigator.clipboard.writeText(msg).then(() => {
-      showToast('Đã sao chép nội dung 📋');
-    }).catch(() => {
-      messageEl.select();
-      document.execCommand('copy');
-      showToast('Đã sao chép nội dung 📋');
-    });
-  }
-
-  // Xoá
-  function clearLetter() {
-    if (confirm('Bạn có chắc muốn xoá toàn bộ nội dung thư không?')) {
-      messageEl.value = '';
-      updateCount();
-      preview.classList.remove('show');
-      showToast('Đã xoá nội dung 🗑️');
-    }
-  }
-
-  // Chống XSS
-  function escapeHtml(str) {
-    return str.replace(/[&<>"']/g, function(m) {
-      return { '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[m];
-    });
-  }
-
-  // Tạo trái tim bay
-  const hearts = ['💗', '💖', '💕', '❤️', '🌸'];
-  for (let i = 0; i < 18; i++) {
+  // Tạo trái tim bay lơ lửng
+  const hearts = ['💔', '💗', '🖤', '🥀', '💌'];
+  for (let i = 0; i < 22; i++) {
     const h = document.createElement('div');
     h.className = 'heart';
     h.textContent = hearts[Math.floor(Math.random() * hearts.length)];
     h.style.left = Math.random() * 100 + 'vw';
-    h.style.animationDuration = (8 + Math.random() * 10) + 's';
-    h.style.animationDelay = Math.random() * 10 + 's';
-    h.style.fontSize = (16 + Math.random() * 26) + 'px';
+    h.style.animationDuration = (9 + Math.random() * 12) + 's';
+    h.style.animationDelay = Math.random() * 12 + 's';
+    h.style.fontSize = (14 + Math.random() * 24) + 'px';
     document.body.appendChild(h);
   }
 </script>
