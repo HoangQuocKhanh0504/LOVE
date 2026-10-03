@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gửi Lan Anh 💔</title>
+<title>Gửi Lan Anh 🥀</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
     font-family: 'Segoe UI', 'Times New Roman', serif;
     min-height: 100vh;
-    background: linear-gradient(160deg, #0d0d1a 0%, #1a1a2e 40%, #2d1b2e 100%);
+    background: linear-gradient(170deg, #07070d 0%, #10101c 40%, #1a0e14 100%);
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -19,44 +19,44 @@
     overflow-x: hidden;
   }
 
-  /* Trái tim bay lơ lửng */
-  .heart {
+  /* Tro tàn / bụi bay lên */
+  .ash {
     position: fixed;
-    color: rgba(255, 107, 129, 0.18);
-    font-size: 22px;
+    color: rgba(180, 150, 160, 0.12);
+    font-size: 16px;
     animation: floatUp linear infinite;
     pointer-events: none;
     z-index: 0;
     user-select: none;
   }
   @keyframes floatUp {
-    0% { transform: translateY(110vh) scale(0.4) rotate(0deg); opacity: 0; }
-    15% { opacity: 1; }
-    100% { transform: translateY(-120px) scale(1.3) rotate(25deg); opacity: 0; }
+    0% { transform: translateY(110vh) scale(0.3) rotate(0deg); opacity: 0; }
+    20% { opacity: 1; }
+    100% { transform: translateY(-120px) scale(1.1) rotate(40deg); opacity: 0; }
   }
 
-  /* Lá thư */
+  /* Lá thư — giấy úa, nhàu */
   .letter {
     width: 100%;
-    max-width: 720px;
-    background: linear-gradient(180deg, #fffdf8 0%, #fff8f5 100%);
-    border-radius: 4px;
+    max-width: 700px;
+    background: linear-gradient(180deg, #f7f2e9 0%, #efe6da 100%);
+    border-radius: 3px;
     box-shadow:
-      0 30px 80px rgba(0, 0, 0, 0.6),
-      0 0 0 1px rgba(255, 255, 255, 0.08),
-      inset 0 0 80px rgba(240, 200, 210, 0.15);
-    padding: 60px 55px 50px;
+      0 35px 90px rgba(0, 0, 0, 0.85),
+      0 0 0 1px rgba(255, 255, 255, 0.05),
+      inset 0 0 100px rgba(150, 120, 100, 0.12);
+    padding: 65px 55px 55px;
     position: relative;
     z-index: 1;
-    animation: fadeIn 1.4s ease;
-    line-height: 1.9;
+    animation: fadeIn 1.8s ease;
+    line-height: 1.95;
   }
   @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(40px); }
+    from { opacity: 0; transform: translateY(50px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* Vết gấp giấy */
+  /* Vết gấp giấy dọc */
   .letter::before {
     content: '';
     position: absolute;
@@ -64,89 +64,99 @@
     width: 1px; height: 100%;
     background: linear-gradient(180deg,
       transparent 0%,
-      rgba(200, 170, 180, 0.15) 20%,
-      rgba(200, 170, 180, 0.15) 80%,
+      rgba(150, 120, 100, 0.15) 15%,
+      rgba(150, 120, 100, 0.15) 85%,
       transparent 100%);
     pointer-events: none;
   }
 
-  /* Con dấu sáp */
-  .seal {
+  /* Vết gấp ngang */
+  .letter::after {
+    content: '';
     position: absolute;
-    top: -22px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 64px;
-    height: 64px;
-    background: radial-gradient(circle at 35% 30%, #e8526d, #a3122e);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 26px;
-    color: #fff;
-    box-shadow: 0 6px 18px rgba(163, 18, 46, 0.5);
-    z-index: 2;
+    left: 0; top: 38%;
+    width: 100%; height: 1px;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(150, 120, 100, 0.12) 15%,
+      rgba(150, 120, 100, 0.12) 85%,
+      transparent 100%);
+    pointer-events: none;
   }
+
+  /* Vết ố loang như nước mắt khô */
+  .stain {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(150, 110, 90, 0.08), transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .stain.s1 { top: 18%; right: 8%; width: 90px; height: 90px; }
+  .stain.s2 { bottom: 22%; left: 6%; width: 120px; height: 120px; }
+  .stain.s3 { top: 55%; right: 20%; width: 60px; height: 60px; }
 
   .letter-date {
     text-align: right;
-    font-size: 13.5px;
-    color: #b09aa2;
+    font-size: 13px;
+    color: #9a8a7e;
     font-style: italic;
-    margin-bottom: 30px;
-    letter-spacing: 0.3px;
+    margin-bottom: 35px;
+    letter-spacing: 0.4px;
   }
 
   .letter h1 {
-    font-size: 26px;
-    color: #a3122e;
+    font-size: 25px;
+    color: #5a3a3a;
     font-weight: 700;
-    margin-bottom: 28px;
+    margin-bottom: 30px;
     letter-spacing: 0.5px;
     text-align: center;
     font-family: 'Segoe UI', sans-serif;
+    opacity: 0.9;
   }
 
   .letter p {
     font-size: 16.5px;
-    color: #3d3238;
+    color: #3a3230;
     margin-bottom: 20px;
     text-align: justify;
     text-indent: 1.5em;
     word-spacing: 0.5px;
   }
 
-  /* Đoạn nhấn mạnh nỗi đau */
+  /* Đoạn nhấn — nỗi đau, tự trách */
   .highlight {
-    color: #a3122e;
+    color: #7a2a2a;
     font-weight: 600;
     font-style: italic;
     text-indent: 0;
     display: block;
-    margin: 26px 0;
-    padding-left: 16px;
-    border-left: 3px solid #e8526d;
-    background: linear-gradient(90deg, rgba(232, 82, 109, 0.06), transparent);
-    padding: 12px 16px;
-    border-radius: 6px;
+    margin: 28px 0;
+    padding: 14px 18px;
+    border-left: 3px solid #a33a3a;
+    background: linear-gradient(90deg, rgba(163, 58, 58, 0.07), transparent);
+    border-radius: 5px;
+    line-height: 1.8;
+    font-size: 16.5px;
   }
 
   .letter .closing {
     text-indent: 0;
-    margin-top: 30px;
+    margin-top: 35px;
     font-style: italic;
-    color: #5a4a52;
+    color: #5a4a44;
     text-align: right;
     font-size: 15.5px;
+    line-height: 1.9;
   }
 
   .letter .signature {
     text-indent: 0;
     text-align: right;
-    margin-top: 6px;
+    margin-top: 10px;
     font-size: 16px;
-    color: #a3122e;
+    color: #7a2a2a;
     font-weight: 700;
     font-family: 'Segoe UI', sans-serif;
     letter-spacing: 0.4px;
@@ -155,153 +165,170 @@
   .letter .signature small {
     display: block;
     font-size: 12.5px;
-    color: #b09aa2;
+    color: #9a8a7e;
     font-weight: 400;
     font-style: italic;
-    margin-top: 4px;
+    margin-top: 5px;
     letter-spacing: 0.2px;
   }
 
   .divider-line {
-    width: 80px;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #e8526d, transparent);
-    margin: 34px auto 26px;
+    width: 90px;
+    height: 1.5px;
+    background: linear-gradient(90deg, transparent, #a33a3a, transparent);
+    margin: 38px auto 28px;
+    opacity: 0.7;
   }
 
-  /* Nút nhỏ cuối thư */
   .end-note {
     text-align: center;
     font-size: 12.5px;
-    color: #c4b2b9;
+    color: #b0a096;
     font-style: italic;
-    margin-top: 30px;
+    margin-top: 32px;
     letter-spacing: 0.3px;
+    line-height: 1.8;
   }
 
-  /* Responsive */
   @media (max-width: 600px) {
     body { padding: 40px 12px; }
-    .letter { padding: 50px 24px 36px; }
-    .letter h1 { font-size: 21px; }
+    .letter { padding: 50px 26px 40px; }
+    .letter h1 { font-size: 20px; }
     .letter p { font-size: 15.5px; text-align: left; }
-    .highlight { font-size: 15px; }
-    .seal { width: 54px; height: 54px; font-size: 22px; top: -18px; }
+    .highlight { font-size: 15px; padding: 12px 14px; }
   }
 </style>
 </head>
 <body>
 
-<!-- Lá thư -->
 <article class="letter">
-  <div class="seal">💔</div>
+  <div class="stain s1"></div>
+  <div class="stain s2"></div>
+  <div class="stain s3"></div>
 
-  <div class="letter-date">Viết trong một đêm lòng nặng trĩu...</div>
+  <div class="letter-date">Viết khi mọi thứ đã muộn màng...</div>
 
   <h1>Gửi Lan Anh,</h1>
 
   <p>
-    Anh không biết bắt đầu từ đâu nữa, vì trong lòng anh bây giờ
-    có quá nhiều thứ đang chồng chéo lên nhau. Anh chỉ biết là
-    <strong>anh đang rất tủi thân</strong> — cái cảm giác mà chắc
-    em cũng từng trải qua, khi mình ở cạnh một người mình thương
-    mà vẫn thấy cô đơn.
+    Anh không viết lá thư này để níu kéo em nữa. Anh biết em đã
+    đi rồi. Anh biết có nói gì, có làm gì, cũng không kéo em
+    quay lại được. Anh chỉ viết — vì anh cần nói ra một lần
+    cho hết.
   </p>
 
   <p>
-    Mối quan hệ của chúng mình phức tạp quá, Lan Anh à. Anh không
-    trách em, anh cũng không trách bản thân mình. Anh chỉ thấy
-    mệt. Mệt vì mỗi lần cãi nhau, anh chỉ muốn nói ra cho em
-    hiểu thôi — nói để em biết anh đang nghĩ gì, anh đang đau
-    chỗ nào — nhưng thái độ và cách nói của em khiến anh có cảm
-    giác như <em>em chẳng muốn nghe</em>. Như thể anh nói ra chỉ
-    để rồi bị bỏ ngoài tai.
-  </p>
-
-  <p>
-    Em cọc cằn với anh từ trước tới giờ, anh đều bỏ qua. Anh tự
-    nhủ "chắc em mệt", "chắc em đang có chuyện", "chắc em không
-    cố ý". Anh nuốt hết vào trong, để giữ cho mình bình yên, để
-    giữ cho chúng mình bình yên. Nhưng rồi đến cả việc anh đi,
-    em cũng chẳng có một cảm xúc gì. Em vẫn một mực im lặng như
-    vậy. Cái im lặng đó nó đau hơn cả một câu nói.
+    Anh đã sai, Lan Anh à. Sai từ những điều nhỏ nhất. Sai vì
+    anh đã không lắng nghe em khi em cần được nghe. Sai vì anh
+    đã không quan tâm đến cảm xúc của em khi em đang tổn thương.
+    Sai vì anh đã không chịu hiểu em — hiểu những gì em nói,
+    hiểu cả những gì em không nói.
   </p>
 
   <span class="highlight">
-    Anh cũng biết đau mà, Lan Anh.<br>
-    Anh cũng cần được hỏi thăm, cần được quan tâm, cần được lắng
-    nghe — dù chỉ một lần thôi.
+    Anh cứ nghĩ mình đang cố gắng vì em.<br>
+    Nhưng thật ra anh chỉ đang cố gắng vì chính bản thân mình —<br>
+    vì nỗi sợ mất em, chứ không phải vì em.
   </span>
 
   <p>
-    Anh biết, cách anh thể hiện sự quan tâm của mình chưa đủ để
-    em nhận ra. Anh không phải người giỏi nói những lời ngọt
-    ngào, anh không phải người biết cách làm em vui mỗi ngày.
-    Nhưng anh đã cố. Anh đã cố rất nhiều, theo cái cách của một
-    người đàn ông không biết diễn đạt.
+    Anh nhớ lại những lần em nói, em kể, em tâm sự. Anh nghe
+    bằng tai, nhưng không nghe bằng lòng. Anh trả lời cho có,
+    anh gật gù cho xong, rồi anh lại quay về với những suy
+    nghĩ của riêng anh. Em ở ngay đó, mà anh lại để em cô đơn.
   </p>
 
   <p>
-    Có bao giờ em tự hỏi, anh đã từng gạt bỏ bao nhiêu lần tiêu
-    cực, gạt bỏ bao nhiêu lần thất vọng, để anh có thể ở bên em
-    lâu hơn một chút chưa? Anh không kể ra đâu, vì anh không
-    muốn em thấy mình là gánh nặng. Nhưng anh đã làm. Rất nhiều
-    lần. Anh tự dày vò bản thân mình, tự đè nén cảm xúc của
-    mình xuống, chỉ để mỗi sáng thức dậy anh vẫn còn có thể gọi
-    tên em.
+    Anh nhớ những lần em buồn, em khóc, em im lặng. Anh thấy
+    hết. Nhưng anh không hỏi. Anh không dám hỏi. Anh sợ phải
+    đối diện với cảm xúc của em, sợ mình không đủ khả năng để
+    an ủi, nên anh chọn cách im lặng — cái im lặng mà giờ đây
+    anh hiểu nó đã làm em đau đến nhường nào.
   </p>
 
   <span class="highlight">
-    Có những đêm anh nghĩ đến chuyện buông tay.<br>
-    Nghĩ đến chuyện kết thúc tất cả.<br>
-    Nhưng rồi anh lại nghĩ về em — nghĩ về chúng mình,<br>
-    về tương lai mà anh vẫn hằng mong.
+    Em đã từng cần anh lắm.<br>
+    Em đã từng chờ anh hiểu em.<br>
+    Nhưng anh đã đến quá muộn.
   </span>
 
   <p>
-    Anh thật sự muốn cưới em, Lan Anh. Anh không muốn bản thân
-    mình phải đứng ở một nơi nào đó, chúc em hạnh phúc bên một
-    người khác. Anh không muốn ngày em mặc váy cưới, người nắm
-    tay em không phải là anh. Anh sợ cái ngày đó lắm.
+    Anh đã từng nghĩ mình là người quan tâm em nhất. Nhưng
+    không. Anh chỉ là người nói yêu em, mà chưa từng thật sự
+    yêu em theo cách em cần. Anh đã yêu em bằng cái tôi của
+    anh, bằng cái cách mà anh cho là đúng — mà quên mất rằng
+    tình yêu không phải là cho đi những gì mình có, mà là cho
+    đi những gì người kia cần.
   </p>
 
   <p>
-    Anh viết những dòng này không phải để em thương hại anh, cũng
-    không phải để em thấy tội lỗi. Anh chỉ muốn em hiểu rằng —
-    <strong>anh đã cố gắng rất nhiều, theo cái cách mà có thể em
-    chưa từng nhìn thấy.</strong> Và anh mệt rồi. Mệt nhưng vẫn
-    còn thương em. Đó mới là điều đau nhất.
+    Giờ thì em đi rồi. Anh ngồi đây, nhìn lại tất cả, và nhận
+    ra một điều quá muộn màng — <strong>người làm em đau,
+    không ai khác, chính là anh.</strong> Không phải hoàn
+    cảnh. Không phải số phận. Không phải em. Là anh.
+  </p>
+
+  <p>
+    Anh đã níu kéo em bằng nước mắt, bằng những lời hứa, bằng
+    những lần anh nói "anh sẽ thay đổi". Nhưng anh chưa từng
+    thật sự thay đổi. Anh chỉ đang sợ mất em, chứ chưa từng
+    thật sự hiểu em cần gì. Và em — em đã mệt mỏi với những
+    lời hứa đó rồi, phải không?
+  </p>
+
+  <span class="highlight">
+    Anh biết bây giờ có nói gì cũng vô ích.<br>
+    Anh biết có khóc cũng không đổi được gì.<br>
+    Anh biết em đã đi, và anh phải chấp nhận.
+  </span>
+
+  <p>
+    Anh không mong em tha thứ. Anh cũng không mong em quay
+    lại. Anh chỉ mong em biết rằng — anh đã nhận ra lỗi của
+    mình. Muộn, nhưng anh đã nhận ra. Và anh xin lỗi. Xin lỗi
+    vì đã không lắng nghe em. Xin lỗi vì đã không quan tâm
+    đến cảm xúc của em. Xin lỗi vì đã không chịu hiểu em.
+    Xin lỗi vì đã để em phải đi.
+  </p>
+
+  <p>
+    Em cứ đi đi, Lan Anh. Đi về nơi mà em thấy bình yên. Đi
+    về phía mà em không phải cố gắng để được lắng nghe nữa.
+    Anh sẽ ở lại đây — với nỗi ân hận này, với bài học này,
+    với một phần trái tim đã theo em mà đi mất.
   </p>
 
   <div class="divider-line"></div>
 
   <p class="closing">
-    Nếu em đọc được những dòng này,<br>
-    xin em hãy một lần thôi — lắng nghe anh.
+    Cảm ơn em đã từng ở bên anh.<br>
+    Xin lỗi em vì đã không giữ em lại —<br>
+    bằng cách trở thành người mà em cần.
   </p>
 
   <p class="signature">
-    — Một người luôn coi em là tất cả —
+    — Một người đã đánh mất em —
     <small>Người gửi: Ẩn danh</small>
   </p>
 
   <div class="end-note">
-    💌 Lá thư này được viết bằng những gì chân thành nhất.
+    🥀 Lá thư này sẽ không bao giờ được gửi đi.<br>
+    Nhưng anh vẫn viết — để lòng anh nhẹ hơn một chút.
   </div>
 </article>
 
 <script>
-  // Tạo trái tim bay lơ lửng
-  const hearts = ['💔', '💗', '🖤', '🥀', '💌'];
-  for (let i = 0; i < 22; i++) {
-    const h = document.createElement('div');
-    h.className = 'heart';
-    h.textContent = hearts[Math.floor(Math.random() * hearts.length)];
-    h.style.left = Math.random() * 100 + 'vw';
-    h.style.animationDuration = (9 + Math.random() * 12) + 's';
-    h.style.animationDelay = Math.random() * 12 + 's';
-    h.style.fontSize = (14 + Math.random() * 24) + 'px';
-    document.body.appendChild(h);
+  // Tạo tro tàn / bụi bay lơ lửng
+  const ashes = ['·', '•', '˙', '∘', '°', '🥀', '🖤', '💔'];
+  for (let i = 0; i < 26; i++) {
+    const a = document.createElement('div');
+    a.className = 'ash';
+    a.textContent = ashes[Math.floor(Math.random() * ashes.length)];
+    a.style.left = Math.random() * 100 + 'vw';
+    a.style.animationDuration = (10 + Math.random() * 14) + 's';
+    a.style.animationDelay = Math.random() * 14 + 's';
+    a.style.fontSize = (10 + Math.random() * 20) + 'px';
+    document.body.appendChild(a);
   }
 </script>
 
